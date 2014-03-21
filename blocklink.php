@@ -216,7 +216,7 @@ class BlockLink extends Module
 			foreach ($languages as $language)
 				if (!empty($_POST['text_'.$language['id_lang']]))
 				{
-					if (!Db::getInstance()->execute('INSERT INTO '._DB_PREFIX_.'blocklink_lang VALUES ('.(int)$id_link.', '.(int)($language['id_lang']).', \''.pSQL($_POST['text_'.$language['id_lang']]).'\')'))
+					if (!Db::getInstance()->execute('INSERT INTO '._DB_PREFIX_.'blocklink_lang (`id_blocklink`, `id_lang`, `text`) VALUES ('.(int)$id_link.', '.(int)($language['id_lang']).', \''.pSQL($_POST['text_'.$language['id_lang']]).'\')'))
 						return false;
 				}
 				else
@@ -225,7 +225,7 @@ class BlockLink extends Module
 		}
 		else
 		{
-			if (!Db::getInstance()->execute('INSERT INTO '._DB_PREFIX_.'blocklink 
+			if (!Db::getInstance()->execute('INSERT INTO '._DB_PREFIX_.'blocklink (`id_blocklink`, `url`, `new_window`) 
 														VALUES (NULL, \''.pSQL(Tools::getValue('url')).'\', '.((isset($_POST['newWindow']) && Tools::getValue('newWindow')) == 'on' ? 1 : 0).')') ||
 				!$id_link = Db::getInstance()->Insert_ID()
 			)
@@ -234,13 +234,13 @@ class BlockLink extends Module
 			foreach ($languages as $language)
 				if (!empty($_POST['text_'.$language['id_lang']]))
 				{
-					if (!Db::getInstance()->execute('INSERT INTO '._DB_PREFIX_.'blocklink_lang 
+					if (!Db::getInstance()->execute('INSERT INTO '._DB_PREFIX_.'blocklink_lang (`id_blocklink`, `id_lang`, `text`) 
 																VALUES ('.(int)$id_link.', '.(int)$language['id_lang'].', \''.pSQL(Tools::getValue('text_'.$language['id_lang'])).'\')')
 					)
 						return false;
 				}
 				else
-					if (!Db::getInstance()->execute('INSERT INTO '._DB_PREFIX_.'blocklink_lang VALUES ('.(int)$id_link.', '.(int)($language['id_lang']).', \''.pSQL($_POST['text_'.$id_lang_default]).'\')'))
+					if (!Db::getInstance()->execute('INSERT INTO '._DB_PREFIX_.'blocklink_lang (`id_blocklink`, `id_lang`, `text`) VALUES ('.(int)$id_link.', '.(int)($language['id_lang']).', \''.pSQL($_POST['text_'.$id_lang_default]).'\')'))
 						return false;
 		}
 
