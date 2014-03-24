@@ -36,7 +36,7 @@ class BlockLink extends Module
 	{
 		$this->name = 'blocklink';
 		$this->tab = 'front_office_features';
-		$this->version = '1.5.1';
+		$this->version = '1.5.2';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 
@@ -46,6 +46,7 @@ class BlockLink extends Module
 		$this->displayName = $this->l('Link block');
 		$this->description = $this->l('Adds a block with additional links.');
 		$this->confirmUninstall = $this->l('Are you sure you want to delete all your links?');
+		$this->ps_versions_compliancy = array('min' => '1.5.6.1', 'max' => _PS_VERSION_);
 	}
 
 	public function install()
