@@ -247,7 +247,8 @@ class BlockLink extends Module
 
 		Db::getInstance()->execute('DELETE FROM '._DB_PREFIX_.'blocklink_shop WHERE id_blocklink='.(int)$id_link);
 
-		if (!Shop::isFeatureActive())
+		$shops = Shop::getShops(true, null, true);
+		if (!Shop::isFeatureActive() || (Shop::isFeatureActive() && count($shops) == 1))
 		{
 			Db::getInstance()->insert('blocklink_shop', array(
 				'id_blocklink' => (int)$id_link,
