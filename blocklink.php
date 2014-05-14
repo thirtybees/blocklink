@@ -89,7 +89,7 @@ class BlockLink extends Module
 		)
 		{
 			// If there are no colums implemented by the template, throw an error and uninstall the module
-			$this->_errors[] = $this->l('This module need to be hooked in a column and your theme does not implement one');
+			$this->_errors[] = $this->l('This module needs to be hooked to a column, but your theme does not implement one');
 			parent::uninstall();
 
 			return false;
@@ -349,15 +349,15 @@ class BlockLink extends Module
 	{
 		$fields_list = array(
 			'id' => array(
-				'title' => $this->l('Id'),
+				'title' => $this->l('Link ID'),
 				'type' => 'text',
 			),
 			'text_'.$this->context->language->id => array(
-				'title' => $this->l('Text'),
+				'title' => $this->l('Link text'),
 				'type' => 'text',
 			),
 			'url' => array(
-				'title' => $this->l('Url'),
+				'title' => $this->l('URL'),
 				'type' => 'text',
 			),
 		);
@@ -395,13 +395,13 @@ class BlockLink extends Module
 					),
 					array(
 						'type' => 'text',
-						'label' => $this->l('Text'),
+						'label' => $this->l('Link text'),
 						'name' => 'text',
 						'lang' => true,
 					),
 					array(
 						'type' => 'text',
-						'label' => $this->l('Url'),
+						'label' => $this->l('URL'),
 						'name' => 'url',
 					),
 					array(
@@ -443,19 +443,19 @@ class BlockLink extends Module
 		$fields_form_2 = array(
 			'form' => array(
 				'legend' => array(
-					'title' => $this->l('Add a new block'),
+					'title' => $this->l('Block settings'),
 					'icon' => 'icon-plus-sign-alt'
 				),
 				'input' => array(
 					array(
 						'type' => 'text',
-						'label' => $this->l('Title'),
+						'label' => $this->l('Block title'),
 						'name' => 'title',
 						'lang' => true,
 					),
 					array(
 						'type' => 'text',
-						'label' => $this->l('Url'),
+						'label' => $this->l('URL for the block\'s title'),
 						'name' => 'title_url',
 					),
 				),
@@ -469,23 +469,23 @@ class BlockLink extends Module
 		$fields_form_3 = array(
 			'form' => array(
 				'legend' => array(
-					'title' => $this->l('Settings'),
+					'title' => $this->l('Link display settings'),
 					'icon' => 'icon-cogs'
 				),
 				'input' => array(
 					array(
 						'type' => 'select',
-						'label' => $this->l('Order list'),
+						'label' => $this->l('List order'),
 						'name' => 'orderWay',
 						'options' => array(
 							'query' => array(
 								array(
 									'id' => 0,
-									'name' => $this->l('by most recent links')
+									'name' => $this->l('most recent links first')
 								),
 								array(
 									'id' => 1,
-									'name' => $this->l('by oldest links')
+									'name' => $this->l('oldest links first')
 								)
 							),
 							'id' => 'id',
