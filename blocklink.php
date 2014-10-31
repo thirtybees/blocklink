@@ -209,7 +209,7 @@ class BlockLink extends Module
 		if ((int)Tools::getValue('id_blocklink') > 0)
 		{
 			$id_link = (int)Tools::getValue('id_blocklink');
-			if (!Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'blocklink SET `url` = \''.pSQL(Tools::getValue('url')).'\', `new_window` = '.(isset($_POST['newWindow']) ? 1 : 0).' WHERE `id_blocklink` = '.(int)$id_link))
+			if (!Db::getInstance()->execute('UPDATE '._DB_PREFIX_.'blocklink SET `url` = \''.pSQL(Tools::getValue('url')).'\', `new_window` = '.pSQL((int)Tools::getValue('newWindow')).' WHERE `id_blocklink` = '.(int)$id_link))
 				return false;
 			if (!Db::getInstance()->execute('DELETE FROM '._DB_PREFIX_.'blocklink_lang WHERE `id_blocklink` = '.(int)$id_link))
 				return false;
