@@ -147,7 +147,7 @@ class BlockLink extends Module
 	{
 		if ((int)$id > 0)
 		{
-			$sql = 'SELECT b.`id_blocklink`, b.`url`, b.`new_window` FROM `'._DB_PREFIX_.'blocklink` b WHERE b.id_blocklink='.$id;
+			$sql = 'SELECT b.`id_blocklink`, b.`url`, b.`new_window` FROM `'._DB_PREFIX_.'blocklink` b WHERE b.id_blocklink='.(int)$id;
 
 			if (!$results = Db::getInstance()->getRow($sql))
 				return false;
@@ -187,13 +187,17 @@ class BlockLink extends Module
 			$result[$i]['newWindow'] = $link['new_window'];
 			// Get multilingual text
 
-			if (!$texts = Db::getInstance()->executeS('SELECT `id_lang`, `text`
-																	FROM '._DB_PREFIX_.'blocklink_lang
-																	WHERE `id_blocklink`='.(int)$link['id_blocklink'])
+			if (!$texts = Db::getInstance()->executeS('
+					SELECT `id_lang`, `text`
+					FROM '._DB_PREFIX_.'blocklink_lang
+					WHERE `id_blocklink`='.(int)$link['id_blocklink']
+				)
 			)
 				return false;
+
 			foreach ($texts as $text)
 				$result[$i]['text_'.$text['id_lang']] = $text['text'];
+
 			$i++;
 		}
 
