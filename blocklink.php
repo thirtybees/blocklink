@@ -152,13 +152,19 @@ class BlockLink extends Module
 			if (!$results = Db::getInstance()->getRow($sql))
 				return false;
 
-				$link['id_blocklink'] = $results['id_blocklink'];
-				$link['url'] = $results['url'];
-				$link['newWindow'] = $results['new_window'];
+			$link['id_blocklink'] = (int)$results['id_blocklink'];
+			$link['url'] = $results['url'];
+			$link['newWindow'] = $results['new_window'];
 
-			$results_lang = Db::getInstance()->executeS('SELECT `id_lang`, `text` FROM '._DB_PREFIX_.'blocklink_lang WHERE `id_blocklink`='.(int)$link['id_blocklink']);
-			foreach ($results_lang as $result_lang)
-				$link['text'][$result_lang['id_lang']] = $result_lang['text'];
+			$results = Db::getInstance()->executeS('SELECT `id_lang`, `text` FROM '._DB_PREFIX_.'blocklink_lang WHERE `id_blocklink`='.(int)$link['id_blocklink']);
+
+			$results_lang = array();
+			foreach ($results as $result)
+				$results_lang[(int)$result['id_lang']] = $result;
+
+			foreach (Language::getLanguages(false) as $lang)
+				$link['text'][(int)$lang['id_lang']] = (isset($results_lang[(int)$lang['id_lang']])) ? $results_lang[(int)$lang['id_lang']]['text'] : false;
+
 			return $link;
 		}
 
