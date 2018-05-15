@@ -43,7 +43,7 @@ class BlockLink extends Module
 		$this->bootstrap = true;
 		parent::__construct();
 
-		$this->displayName = $this->l('Link block');
+		$this->displayName = $this->l('Block Links');
 		$this->description = $this->l('Adds a block with additional links.');
 		$this->confirmUninstall = $this->l('Are you sure you want to delete all your links?');
 		$this->ps_versions_compliancy = array('min' => '1.6', 'max' => '1.6.99.99');
