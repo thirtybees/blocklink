@@ -6,6 +6,7 @@ tags:
   - links
   - menu
   - link block
+  - blocklink
 description_short: The block link allows you to add a menu of custom links to your site.
 description: description.md
 images:
