@@ -45,6 +45,7 @@ class BlockLink extends Module
 		$this->displayName = $this->l('Block Links');
 		$this->description = $this->l('Adds a block with additional links.');
 		$this->tb_versions_compliancy = '> 1.0.0';
+		$this->tb_min_version = '1.0.0';
 		$this->ps_versions_compliancy = array('min' => '1.6', 'max' => '1.6.99.99');
 		$this->confirmUninstall = $this->l('Are you sure you want to delete all your links?');
 	}
