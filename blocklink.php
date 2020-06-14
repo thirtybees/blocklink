@@ -91,7 +91,7 @@ class BlockLink extends Module
 		{
 			// If there are no colums implemented by the template, throw an error and uninstall the module
 			$this->_errors[] = $this->l('This module needs to be hooked to a column, but your theme does not implement one');
-			parent::uninstall();
+			$this->uninstall();
 
 			return false;
 		}
