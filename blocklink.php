@@ -35,7 +35,7 @@ class BlockLink extends Module
 	{
 		$this->name = 'blocklink';
 		$this->tab = 'front_office_features';
-		$this->version = '2.0.2';
+		$this->version = '2.0.3';
 		$this->author = 'thirty bees';
 		$this->need_instance = 0;
 
